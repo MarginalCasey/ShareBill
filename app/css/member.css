@@ -1,6 +1,6 @@
-/* user-list */
+/* member-list */
 
-#user-list md-icon {
+#member-list md-icon {
 	margin-right: -12px;
     width: 12px;
     overflow: hidden;
@@ -8,7 +8,7 @@
     cursor: move;
 }
 
-#user-list button {
+#member-list button {
 	padding-left: 20px;
 	background-color: transparent;
 }
@@ -23,13 +23,13 @@
 	background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* user-sidenav */
+/* member-sidenav */
 
-form#newUser > md-input-container > span {
+form#newMember > md-input-container > span {
 	line-height: 30px;
 }
 
-form#newUser > md-input-container > md-select {
+form#newMember > md-input-container > md-select {
 	margin: 0px;
 	padding: 0px;
 }

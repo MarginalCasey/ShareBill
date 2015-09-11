@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  var app = angular.module('shareBill', ['ngMaterial', 'user']);
+  var app = angular.module('shareBill', ['ngMaterial', 'member']);
 
   app.config(function ($mdThemingProvider) {
       $mdThemingProvider.theme('default')
@@ -23,7 +23,7 @@
     var ui = this;
     
     ui.currentTab = 0;
-    ui.user_is_open = false;
+    ui.member_is_open = false;
 
     ui.switchToTab = function(index) {
       ui.currentTab = index;
@@ -31,12 +31,12 @@
 
     ui.showSideNav = function() {
       if(ui.currentTab === 0)
-        ui.user_is_open = true;
+        ui.member_is_open = true;
     };
 
     ui.closeSideNav = function() {
       if(ui.currentTab === 0){
-        ui.user_is_open = false;
+        ui.member_is_open = false;
       }
     };
 
