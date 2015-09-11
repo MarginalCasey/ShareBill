@@ -1,8 +1,27 @@
-<md-sidenav class="md-sidenav-right md-whiteframe-z2 full-width" md-is-open="ui.user_is_open">
-  <md-toolbar layout="row" layout-align="center center" class="md-whiteframe-z1">
-    <div class="btn-group">
-      <md-button ng-click="ui.closeSideNav(); user.reset()"><md-icon md-font-set="material-icons">clear</md-icon>取消</md-button>
-      <md-button ng-click="user.create(); ui.closeSideNav(); user.reset()"><md-icon md-font-set="material-icons">done</md-icon>儲存</md-button>
+<md-sidenav md-is-open="ui.user_is_open" class="md-sidenav-right md-whiteframe-z2 full-width">
+  <md-toolbar layout="row" layout-align="center center" class="md-whiteframe-z1">   
+    <!-- 新增成員 -->
+    <div flex="100" layout="row" ng-show="user.currIndex === ''" class="btn-group btn-large">
+      <md-button flex="50" ng-click="ui.closeSideNav(); user.reset()">
+        <md-icon md-font-set="material-icons" id="closeSideNav">chevron_left</md-icon>
+        <md-icon md-font-set="material-icons">clear</md-icon> 取消
+      </md-button>
+      <md-button flex="50" ng-click="user.update(); ui.closeSideNav(); user.reset()">
+        <md-icon md-font-set="material-icons">done</md-icon> 儲存
+      </md-button>
+    </div>
+
+    <!-- 編輯成員 -->
+    <div flex="100" layout="row" layout-align="end center" ng-show="user.currIndex !== ''"> 
+      <md-button ng-click="ui.closeSideNav(); user.reset()" ng-show="user.currIndex !== ''" id="closeSideNav">
+        <md-icon md-font-set="material-icons" >chevron_left</md-icon> 編輯成員
+      </md-button>
+      <md-button ng-click="user.delete(); ui.closeSideNav(); user.reset()" class="md-icon-button">
+        <md-icon md-font-set="material-icons">delete</md-icon>
+      </md-button>
+      <md-button ng-click="user.update(); ui.closeSideNav(); user.reset()" class="md-icon-button">
+        <md-icon md-font-set="material-icons">done</md-icon>
+      </md-button>
     </div>
   </md-toolbar>
   

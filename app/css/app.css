@@ -8,6 +8,9 @@ body {
     max-width: 100% !important;
     width: 100% !important;
 }
+.hide {
+    display: none !important;
+}
 
 /* 導覽列 */
 
@@ -39,14 +42,51 @@ body {
     background-color: white !important;
 }
 
+.btn-large > button {
+    border-radius: 0;
+}
+
+.btn-large > button:first-child:not(:last-child) {
+    border-width: 0px 1px 0px 0px;
+}
+
+.btn-large > button + button {
+    border-width: 0px 1px 0px 1px;
+}
+
+.btn-large > button:last-child:not(:first-child) {
+    border-width: 0px 0px 0px 1px;
+}
+
+button.md-icon-button {
+    line-height: 36px !important;
+}
+
 button#showSideNav {
     position: absolute; 
     right: 0px; 
     top: 8px;
 }
 
-button#showSideNav > md-icon {
-    line-height: 36px
+button#closeSideNav {
+    position: absolute;
+    left: 0px;
+    top: 14px;
+    margin: 0px;
+    padding: 0px 0px 0px 24px;
+}
+
+button#closeSideNav > md-icon {
+    position: absolute; 
+    left: 0px; 
+    top: 6px;
+}
+
+md-icon#closeSideNav {
+    position: absolute; 
+    left: 0px; 
+    top: 6px;
+    line-height: 36px;
 }
 
 /* 主內容 */
