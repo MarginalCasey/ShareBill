@@ -1,0 +1,23 @@
+<div flex layout="column" class="md-whiteframe-z2">
+  <md-toolbar layout="row" layout-align="center center" class="md-whiteframe-z1">
+
+    <div class="btn-group">
+      <md-button ng-class="{'active md-primary':ui.currentTab === 0}" ng-click="ui.switchToTab(0)">
+        <md-icon md-font-set="material-icons">face</md-icon>
+      </md-button>
+      <md-button ng-class="{'active md-primary':ui.currentTab === 1}" ng-click="ui.switchToTab(1)">
+        <md-icon md-font-set="material-icons">receipt</md-icon>
+      </md-button>
+    </div>
+
+    <md-button ng-click="ui.showSideNav()" class="md-icon-button" id="showSideNav">
+      <md-icon md-font-set="material-icons">add</md-icon>
+    </md-button>
+
+  </md-toolbar>
+
+  <md-tabs md-dynamic-height md-swipe-content md-center-tabs md-selected="ui.currentTab" class="noTabPanel">
+    <md-tab label="one"><user-list></user-list></md-tab>
+    <md-tab label="two"><report></report></md-tab>
+  </md-tabs>
+</div>

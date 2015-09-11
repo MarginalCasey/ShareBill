@@ -1,0 +1,16 @@
+<md-content flex layout-padding>
+  <md-list ui-sortable="user.sortableOptions" ng-model="user.list" id="user-list">
+    <md-list-item ng-repeat="user in user.list" id="{{user.id}}">
+
+      <md-icon md-font-set="material-icons">menu</md-icon>
+      
+      <md-button class="md-no-style">
+        <div class="md-list-item-inner ng-scope">
+          <div ng-style="{'background-color': user.color}" class="color-square"></div>
+          <p>{{user.name}}</p>
+        </div>
+      </md-button>
+
+    </md-list-item>
+  </md-list>
+</md-content>

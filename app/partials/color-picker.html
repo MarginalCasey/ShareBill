@@ -1,0 +1,9 @@
+<md-select flex="66" ng-model="user.currColor" placeholder="顏色">
+  <md-select-label class="full-width">
+    <div class="color-picker" ng-style="{'background-color': user.currColor}"></div>
+  </md-select-label>
+
+  <md-option value="{{color}}" ng-repeat="color in picker.colors" class="color-picker">
+    <div class="color-picker" ng-style="{'background-color': color}"></div>
+  </md-option>
+</md-select>
