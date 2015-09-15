@@ -3,11 +3,38 @@
 
   var app = angular.module('member', ['ui.sortable', 'colorPicker']);
 
+  app.directive('memberList', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/member/member-list.html',
+      replace: true,
+      require: '^memberSidenav',
+      controllerAs: 'member',
+    }
+  });
+
+  app.directive('memberSidenav', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'partials/member/member-sidenav.html',
+      replace: true,
+      controller: 'memberController',
+      controllerAs: 'member',
+    }
+  });
+
   app.controller('memberController', function(){
     var member = this;
 
-    member.nextId = 0;
-    member.list = [];
+    /*member.nextId = 0;
+    member.list = [];*/
+
+    member.nextId = 3;
+    member.list = [
+      {name: '張文源', color: 'red'},
+      {name: 'Casey Chang', color: 'yellow'},
+      {name: '地表最帥的男人', color: 'green'}
+    ];
 
     member.currIndex = '';
     member.currName = '';
@@ -58,26 +85,6 @@
       member.currName = '';
       member.currColor = 'transparent';
     };
-  });
-
-  app.directive('memberList', function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'partials/member-list.html',
-      replace: true,
-      require: '^memberSidenav',
-      controllerAs: 'member',
-    }
-  });
-
-  app.directive('memberSidenav', function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'partials/member-sidenav.html',
-      replace: true,
-      controller: 'memberController',
-      controllerAs: 'member',
-    }
   });
 
 })();

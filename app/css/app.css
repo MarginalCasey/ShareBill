@@ -8,8 +8,17 @@ body {
     max-width: 100% !important;
     width: 100% !important;
 }
+
 .hide {
     display: none !important;
+}
+
+md-divider.thick {
+    border-top-width: 3px;
+}
+
+.text-right {
+    text-align: right;
 }
 
 /* 導覽列 */

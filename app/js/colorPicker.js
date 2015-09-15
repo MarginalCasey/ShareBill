@@ -6,7 +6,7 @@
   app.directive('colorPicker', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/color-picker.html',
+      templateUrl: 'partials/colorPicker/color-picker.html',
       replace: true,
       controller: PickerController,
       controllerAs: 'picker',

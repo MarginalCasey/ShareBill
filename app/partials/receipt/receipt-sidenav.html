@@ -1,0 +1,72 @@
+<md-sidenav md-is-open="ui.receipt_is_open" class="md-sidenav-right md-whiteframe-z2 full-width">
+  <md-toolbar layout="row" layout-align="center center" class="md-whiteframe-z1">   
+    <!-- 新增消費記錄 -->
+    <div flex="100" layout="row" ng-show="true" class="btn-group btn-large">
+      <md-button flex="50" ng-click="ui.closeSideNav();">
+        <md-icon md-font-set="material-icons" id="closeSideNav">chevron_left</md-icon>
+        <md-icon md-font-set="material-icons">clear</md-icon> 取消
+      </md-button>
+      <md-button flex="50" ng-click="member.update();">
+        <md-icon md-font-set="material-icons">done</md-icon> 儲存
+      </md-button>
+    </div>
+
+  </md-toolbar>
+  
+  <md-content layout-padding>
+    <form id="newRecord">
+      <p id="amount">
+        <md-button>$520.00</md-button>
+      </p>
+
+      <md-subheader>分攤對象</md-subheader>
+      <md-divider class="thick"></md-divider>
+      <md-list>
+        <md-divider></md-divider>
+        <md-list-item ng-repeat="person in member.list">      
+          <div class="md-list-item-inner ng-scope">
+            <div ng-style="{'background-color': person.color}" class="color-square"></div>
+            <p>{{person.name}}</p>
+          </div>
+          <md-checkbox class="md-secondary" ng-model="person.share"></md-checkbox>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+      <md-input-container md-no-float layout="row" layout-align="space-between center" ng-init="average='22.00'">
+        <span>每人平均分攤</span> 
+        <span>${{average}}</span>
+      </md-input-container>
+      
+      <md-subheader>已付款</md-subheader>
+      <md-divider class="thick"></md-divider>
+      <md-list>
+        <md-divider></md-divider>
+        <md-list-item ng-repeat="person in member.list" layout="row" layout-align="space-between center" class="payed"> 
+          <div class="md-list-item-inner ng-scope">
+            <div ng-style="{'background-color': person.color}" class="color-square"></div>
+            <p>{{person.name}}</p>
+          </div>
+          <md-button>$0.00</md-button>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-list>
+      <md-input-container md-no-float layout="row" layout-align="space-between center" ng-init="average='22.00'">
+        <span>餘額</span> 
+        <span>${{average}}</span>
+      </md-input-container>
+
+      <md-subheader class="md-no-sticky">附加資訊</md-subheader>
+      <md-divider class="thick"></md-divider>
+      <md-input-container layout="row" md-no-float>
+        <span flex="33">日期</span>
+        <input flex="66" ng-model="item" type="text" placeholder="今天">
+      </md-input-container>
+      <md-input-container layout="row" md-no-float>
+        <span flex="33">備註</span>
+        <input flex="66" ng-model="item" type="text" placeholder="備註">
+      </md-input-container>
+
+
+    </form>
+  </md-content>
+</md-sidenav>

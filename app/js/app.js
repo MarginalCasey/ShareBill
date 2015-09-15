@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  var app = angular.module('shareBill', ['ngMaterial', 'member']);
+  var app = angular.module('shareBill', ['ngMaterial', 'member', 'receipt']);
 
   app.config(function ($mdThemingProvider) {
       $mdThemingProvider.theme('default')
@@ -24,19 +24,27 @@
     
     ui.currentTab = 0;
     ui.member_is_open = false;
+    ui.receipr_is_open = false;
 
     ui.switchToTab = function(index) {
       ui.currentTab = index;
     };
 
     ui.showSideNav = function() {
-      if(ui.currentTab === 0)
+      if(ui.currentTab === 0) {
         ui.member_is_open = true;
+      }
+      else {
+        ui.receipt_is_open = true;
+      }
     };
 
     ui.closeSideNav = function() {
-      if(ui.currentTab === 0){
+      if(ui.currentTab === 0) {
         ui.member_is_open = false;
+      }
+      else {
+        ui.receipt_is_open = false;
       }
     };
 

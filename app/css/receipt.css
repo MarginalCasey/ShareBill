@@ -1,0 +1,39 @@
+/* receipt-sidenav */
+
+form#newRecord > md-input-container {
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+form#newRecord md-input-container {
+	padding-bottom: 0px;
+}
+
+form#newRecord md-input-container > span {
+	line-height: 30px;
+}
+
+form#newRecord p#amount {
+	padding: 0px;
+	margin: 0px;
+	text-align: right;
+}
+
+form#newRecord p#amount span {
+	font-size: 2em;
+}
+
+form#newRecord md-list-item.payed {
+	position: relative;
+    padding: 0px 2px 0px 16px;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+form#newRecord md-list-item.payed button {
+	text-align: right;
+	min-width: 0px;
+}
+
+    
