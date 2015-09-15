@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  var app = angular.module('shareBill', ['ngMaterial', 'member', 'receipt']);
+  var app = angular.module('shareBill', ['ngMaterial', 'member', 'record']);
 
   app.config(function ($mdThemingProvider) {
       $mdThemingProvider.theme('default')
@@ -35,7 +35,7 @@
         ui.member_is_open = true;
       }
       else {
-        ui.receipt_is_open = true;
+        ui.record_is_open = true;
       }
     };
 
@@ -44,7 +44,7 @@
         ui.member_is_open = false;
       }
       else {
-        ui.receipt_is_open = false;
+        ui.record_is_open = false;
       }
     };
 

@@ -1,4 +1,4 @@
-<md-sidenav md-is-open="ui.receipt_is_open" class="md-sidenav-right md-whiteframe-z2 full-width">
+<md-sidenav md-is-open="ui.record_is_open" class="md-sidenav-right md-whiteframe-z2 full-width">
   <md-toolbar layout="row" layout-align="center center" class="md-whiteframe-z1">   
     <!-- 新增消費記錄 -->
     <div flex="100" layout="row" ng-show="true" class="btn-group btn-large">
@@ -6,7 +6,7 @@
         <md-icon md-font-set="material-icons" id="closeSideNav">chevron_left</md-icon>
         <md-icon md-font-set="material-icons">clear</md-icon> 取消
       </md-button>
-      <md-button flex="50" ng-click="member.update();">
+      <md-button flex="50" ng-click="ui.closeSideNav();">
         <md-icon md-font-set="material-icons">done</md-icon> 儲存
       </md-button>
     </div>
