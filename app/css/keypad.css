@@ -1,0 +1,35 @@
+md-dialog#keypad md-toolbar, md-dialog#keypad md-icon {
+	background-color: white;
+	color: rgba(0, 0, 0, 0.870588);
+}
+
+md-dialog#keypad h2 {
+	font-size: 27px;
+}
+
+md-dialog#keypad md-dialog-content {
+	padding: 0px;
+	border-width: 1px 0px 1px 0px;
+	border-style: solid;
+	border-color: rgba(0,0,0,0.12);
+}
+
+md-dialog#keypad md-dialog-content button {
+	margin: 0px;
+	font-size: 24px;
+}
+
+md-dialog#keypad div.md-actions {
+	padding: 0px;
+}
+
+md-dialog#keypad div.md-actions button {
+	margin: 0px;
+	padding: 0px;
+	height: 52px;
+	border-radius: 0px;
+}
+
+md-dialog#keypad div.md-actions button:first-child {
+	border-right: 1px rgba(0,0,0,0.12) solid;
+}

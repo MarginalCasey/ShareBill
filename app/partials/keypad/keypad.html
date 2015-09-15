@@ -1,0 +1,36 @@
+<md-dialog id="keypad" ng-controller="KeypadController as keypad">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 ng-init="dec = keypad.decimalPlaces">${{keypad.result | number: dec}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="keypad.click('backspace')">
+          <md-icon md-font-set="material-icons">backspace</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content layout="row" layout-wrap>
+      <md-button ng-click="keypad.click(1)" flex="33">1</md-button>
+      <md-button ng-click="keypad.click(2)" flex="33">2</md-button>
+      <md-button ng-click="keypad.click(3)" flex="33">3</md-button>
+      <md-button ng-click="keypad.click(4)" flex="33">4</md-button>
+      <md-button ng-click="keypad.click(5)" flex="33">5</md-button>
+      <md-button ng-click="keypad.click(6)" flex="33">6</md-button>
+      <md-button ng-click="keypad.click(7)" flex="33">7</md-button>
+      <md-button ng-click="keypad.click(8)" flex="33">8</md-button>
+      <md-button ng-click="keypad.click(9)" flex="33">9</md-button>
+      <md-button ng-click="keypad.click('.')" flex="33">.</md-button>
+      <md-button ng-click="keypad.click(0)" flex="33">0</md-button>
+    </md-dialog-content>
+    
+    <div class="md-actions" layout="row">
+      <md-button ng-click="keypad.cancel()" flex="50">
+        取消
+      </md-button>
+      <md-button ng-click="keypad.enter()" flex="50">
+        確定
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

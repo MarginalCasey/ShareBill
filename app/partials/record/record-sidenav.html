@@ -16,7 +16,7 @@
   <md-content layout-padding>
     <form id="newRecord">
       <p id="amount">
-        <md-button>$520.00</md-button>
+        <md-button ng-click="record.showKeypad($event)">${{record.amount | number:2}}</md-button>
       </p>
 
       <md-subheader>分攤對象</md-subheader>
@@ -65,8 +65,6 @@
         <span flex="33">備註</span>
         <input flex="66" ng-model="item" type="text" placeholder="備註">
       </md-input-container>
-
-
     </form>
   </md-content>
 </md-sidenav>
