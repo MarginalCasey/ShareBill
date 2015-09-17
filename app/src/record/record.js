@@ -6,7 +6,7 @@
   app.directive('recordSidenav', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/record/record-sidenav.html',
+      templateUrl: 'src/record/view/record-sidenav.html',
       replace: true,
       require: 'memberSidenav',
       controller: 'recordController',
@@ -21,7 +21,7 @@
 
     record.showKeypad = function(ev) {
       $mdDialog.show({
-        templateUrl: 'partials/keypad/keypad.html',
+        templateUrl: 'src/keypad/view/keypad.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose: false,

@@ -12,7 +12,7 @@
   app.directive('mainContent', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/main-content.html',
+      templateUrl: 'main-content.html',
       replace: true,
       controller: UiController,
       controllerAs: 'ui',

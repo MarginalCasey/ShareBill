@@ -6,7 +6,7 @@
   app.directive('memberList', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/member/member-list.html',
+      templateUrl: 'src/member/view/member-list.html',
       replace: true,
       require: '^memberSidenav',
       controllerAs: 'member',
@@ -16,7 +16,7 @@
   app.directive('memberSidenav', function(){
     return {
       restrict: 'E',
-      templateUrl: 'partials/member/member-sidenav.html',
+      templateUrl: 'src/member/view/member-sidenav.html',
       replace: true,
       controller: 'memberController',
       controllerAs: 'member',
