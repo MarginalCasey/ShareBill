@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  var app = angular.module('member', ['ui.sortable', 'colorPicker']);
+  var app = angular.module('member', ['ui.sortable', 'sharedServices', 'colorPicker']);
 
   app.directive('memberList', function(){
     return {
@@ -23,19 +23,12 @@
     }
   });
 
-  app.controller('memberController', function(){
+  app.controller('memberController', ['dataService', function(dataService){
     var member = this;
 
-    /*member.nextId = 0;
-    member.list = [];*/
-
-    member.nextId = 3;
-    member.list = [
-      {name: '張文源', color: 'red'},
-      {name: 'Casey Chang', color: 'yellow'},
-      {name: '地表最帥的男人', color: 'green'}
-    ];
-
+    member.nextId = dataService.member.nextId;
+    member.list = dataService.member.list;
+    
     member.currIndex = '';
     member.currName = '';
     member.currColor = 'transparent';
@@ -85,6 +78,6 @@
       member.currName = '';
       member.currColor = 'transparent';
     };
-  });
+  }]);
 
 })();

@@ -1,20 +1,21 @@
 (function(){
   'use strict';
 
-  var app = angular.module('record', ['keypad']);
+  var recordModule = angular.module('record', ['sharedServices', 'keypad']);
 
-  app.directive('recordSidenav', function(){
+  recordModule.directive('recordSidenav', function(){
     return {
       restrict: 'E',
       templateUrl: 'src/record/view/record-sidenav.html',
       replace: true,
-      require: 'memberSidenav',
       controller: 'recordController',
       controllerAs: 'record',
     }
   });
 
-  app.controller('recordController', function($mdDialog){
+  recordModule.controller('recordController', ['$scope','$mdDialog', 'dataService', function($scope, $mdDialog, dataService){
+    $scope.memberList = dataService.member.list;
+
     var record = this;
 
     record.amount = 0.00;
@@ -33,6 +34,6 @@
         
       });
     };
-  });
+  }]);
 
 })();

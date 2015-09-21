@@ -1,9 +1,9 @@
 (function(){
   'use strict';
 
-  var app = angular.module('keypad', []);
+  var keypadModule = angular.module('keypad', []);
 
-  app.controller('KeypadController', function($mdDialog){
+  keypadModule.controller('KeypadController', ['$mdDialog', function($mdDialog){
     var keypad = this;
     
     keypad.result = 0;
@@ -58,6 +58,6 @@
     keypad.cancel = function() {
       $mdDialog.cancel();
     };
-  });
+  }]);
 
 })();
