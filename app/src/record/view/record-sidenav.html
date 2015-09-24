@@ -2,11 +2,11 @@
   <md-toolbar layout="row" layout-align="center center" class="md-whiteframe-z1">   
     <!-- 新增消費記錄 -->
     <div flex="100" layout="row" ng-show="true" class="btn-group btn-large">
-      <md-button flex="50" ng-click="ui.closeSideNav();">
+      <md-button flex="50" ng-click="ui.closeSideNav(); reset();">
         <md-icon md-font-set="material-icons" id="closeSideNav">chevron_left</md-icon>
         <md-icon md-font-set="material-icons">clear</md-icon> 取消
       </md-button>
-      <md-button flex="50" ng-click="ui.closeSideNav();">
+      <md-button flex="50" ng-click="update(); ui.closeSideNav(); reset();">
         <md-icon md-font-set="material-icons">done</md-icon> 儲存
       </md-button>
     </div>
@@ -16,7 +16,7 @@
   <md-content layout-padding>
     <form id="newRecord">
       <p id="amount">
-        <md-button ng-click="record.showKeypad($event)">${{record.amount | number:2}}</md-button>
+        <md-button ng-click="showKeypad($event, -1)">${{record.amount | number:2}}</md-button>
       </p>
 
       <md-subheader>分攤對象</md-subheader>
@@ -28,13 +28,13 @@
             <div ng-style="{'background-color': person.color}" class="color-square"></div>
             <p>{{person.name}}</p>
           </div>
-          <md-checkbox class="md-secondary" ng-model="person.share"></md-checkbox>
+          <md-checkbox class="md-secondary" ng-model="checkboxes[$index]" ng-change="check($index, person.id)"></md-checkbox>
           <md-divider></md-divider>
         </md-list-item>
       </md-list>
-      <md-input-container md-no-float layout="row" layout-align="space-between center" ng-init="average='22.00'">
+      <md-input-container md-no-float layout="row" layout-align="space-between center">
         <span>每人平均分攤</span> 
-        <span>${{average}}</span>
+        <span>${{getAverage() | number:2}}</span>
       </md-input-container>
       
       <md-subheader>已付款</md-subheader>
@@ -46,24 +46,20 @@
             <div ng-style="{'background-color': person.color}" class="color-square"></div>
             <p>{{person.name}}</p>
           </div>
-          <md-button>$0.00</md-button>
+          <md-button ng-click="showKeypad($event, person.id)">${{getAmount(person.id) | number:2}}</md-button>
           <md-divider></md-divider>
         </md-list-item>
       </md-list>
-      <md-input-container md-no-float layout="row" layout-align="space-between center" ng-init="average='22.00'">
+      <md-input-container md-no-float layout="row" layout-align="space-between center">
         <span>餘額</span> 
-        <span>${{average}}</span>
+        <span>${{getBalance() | number:2}}</span>
       </md-input-container>
 
       <md-subheader class="md-no-sticky">附加資訊</md-subheader>
       <md-divider class="thick"></md-divider>
       <md-input-container layout="row" md-no-float>
-        <span flex="33">日期</span>
-        <input flex="66" ng-model="item" type="text" placeholder="今天">
-      </md-input-container>
-      <md-input-container layout="row" md-no-float>
-        <span flex="33">備註</span>
-        <input flex="66" ng-model="item" type="text" placeholder="備註">
+        <span flex="33">敘述</span>
+        <input flex="66" ng-model="record.description" type="text" aria-label="description">
       </md-input-container>
     </form>
   </md-content>
