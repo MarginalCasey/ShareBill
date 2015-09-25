@@ -1,0 +1,15 @@
+<md-content flex layout-padding>
+  <md-list id="record-list">
+    <md-list-item ng-repeat="Record in recordList">
+      
+      <md-button class="md-no-style" ng-click="set(Record.id); ui.showSideNav();">
+        <div class="md-list-item-inner ng-scope">
+          <p>{{Record.description}}</p>
+          <p class="text-right">${{Record.amount | number:2}}</p>
+        </div>
+        <md-divider ng-show="!$last"></md-divider>
+      </md-button>
+
+    </md-list-item>
+  </md-list>        
+</md-content>

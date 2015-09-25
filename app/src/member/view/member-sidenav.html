@@ -13,7 +13,7 @@
 
     <!-- 編輯成員 -->
     <div flex="100" layout="row" layout-align="end center" ng-show="member.currIndex !== ''"> 
-      <md-button ng-click="ui.closeSideNav(); member.reset()" ng-show="member.currIndex !== ''" id="closeSideNav">
+      <md-button ng-click="ui.closeSideNav(); member.reset()" id="closeSideNav">
         <md-icon md-font-set="material-icons" >chevron_left</md-icon> 編輯成員
       </md-button>
       <md-button ng-click="member.delete(); ui.closeSideNav(); member.reset()" class="md-icon-button">

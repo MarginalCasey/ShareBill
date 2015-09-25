@@ -3,6 +3,16 @@
 
   var recordModule = angular.module('record', ['sharedServices', 'keypad']);
 
+  recordModule.directive('recordSidenav', function(){
+    return {
+      restrict: 'E',
+      templateUrl: 'src/record/view/record-sidenav.html',
+      replace: true,
+      controller: 'recordController',
+      controllerAs: 'record',
+    }
+  });
+
   recordModule.directive('summary', function(){
     return {
       restrict: 'E',
@@ -13,12 +23,12 @@
     }
   });
 
-  recordModule.directive('recordSidenav', function(){
+  recordModule.directive('recordList', function(){
     return {
       restrict: 'E',
-      templateUrl: 'src/record/view/record-sidenav.html',
+      templateUrl: 'src/record/view/record-list.html',
       replace: true,
-      controller: 'recordController',
+      require: '^recordSidenav',
       controllerAs: 'record',
     }
   });
@@ -37,6 +47,7 @@
 
     var memberList = $scope.memberList;
     var recordList = $scope.recordList;
+
     var record = $scope.record;
     var checkboxes = $scope.checkboxes;
     var nextId = dataService.record.nextId;
@@ -150,6 +161,15 @@
           result[0].payed[i] = record.payed[i];
         }
       } 
+    };
+
+    $scope.delete = function() {
+      for(var i = 0; i < recordList.length; i++) {
+        if(recordList[i].id == currId) {
+          recordList.splice(i, 1);
+          break;
+        }
+      }
     };
 
     /*summary, record-list*/

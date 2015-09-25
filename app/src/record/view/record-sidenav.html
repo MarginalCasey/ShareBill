@@ -1,7 +1,7 @@
 <md-sidenav md-is-open="ui.record_is_open" class="md-sidenav-right md-whiteframe-z2 full-width">
   <md-toolbar layout="row" layout-align="center center" class="md-whiteframe-z1">   
     <!-- 新增消費記錄 -->
-    <div flex="100" layout="row" ng-show="true" class="btn-group btn-large">
+    <div flex="100" layout="row" ng-show="currId === -1" class="btn-group btn-large">
       <md-button flex="50" ng-click="ui.closeSideNav(); reset();">
         <md-icon md-font-set="material-icons" id="closeSideNav">chevron_left</md-icon>
         <md-icon md-font-set="material-icons">clear</md-icon> 取消
@@ -11,6 +11,18 @@
       </md-button>
     </div>
 
+    <!-- 編輯消費記錄 -->
+    <div flex="100" layout="row" layout-align="end center" ng-show="currId !== -1"> 
+      <md-button ng-click="ui.closeSideNav(); reset();" id="closeSideNav">
+        <md-icon md-font-set="material-icons" >chevron_left</md-icon> 編輯消費記錄
+      </md-button>
+      <md-button ng-click="delete(); ui.closeSideNav(); reset()" class="md-icon-button">
+        <md-icon md-font-set="material-icons">delete</md-icon>
+      </md-button>
+      <md-button ng-click="update(); ui.closeSideNav(); reset()" class="md-icon-button">
+        <md-icon md-font-set="material-icons">done</md-icon>
+      </md-button>
+    </div>
   </md-toolbar>
   
   <md-content layout-padding>
