@@ -1,19 +1,22 @@
-<md-content flex layout-padding>
-  <p>總共</p>
-  <p>${{getTotalExpense() | number:2}}</p>
-  <md-list id="summary">
+<md-content flex layout-padding id="summary">
+  <div ng-hide="test" class="test">
+    <h3 class="text-center">總共</h3>
+    <h1 class="text-center">${{getTotalExpense() | number:2}}</h1>
+  </div>
+  <md-list>
     <md-list-item ng-repeat="person in memberList" layout="column">  
   
       <md-button class="md-no-style" ng-click="" flex="100">
-        <div class="md-list-item-inner ng-scope">
-          <p>{{person.name}}</p>
-          <p>總共花費: ${{getExpenseOf(person.id) | number:2}}</p>
-          <p>尚欠: ${{getDebtOf(person.id) | number:2}}</p>
+        <p>{{person.name}}</p>
+        
+        <div class="progress-bar" ng-style="outerStyle(person.id)">
+          <div ng-style="innerStyle(person.id, person.color)"></div>
+          <p>{{getSummaryOf(person.id)}}</p>
         </div>
       </md-button>
 
 
-      <md-list flex="100">
+      <md-list flex="100" ng-hide="true">
         <md-list-item ng-repeat="Record in recordList" ng-show="isPayer($index, person.id)" layout="column"> 
 
           <md-button class="md-no-style" ng-click="set(Record.id); ui.showSideNav();" flex="100">

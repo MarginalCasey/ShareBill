@@ -36,4 +36,32 @@ form#newRecord md-list-item.payed button {
 	min-width: 0px;
 }
 
-    
+/* summary */
+
+#summary > md-list button {
+  padding-bottom: 10px;
+}
+
+#summary > md-list button > p {
+  margin: 0px;
+}
+
+.progress-bar {
+  position: relative;
+  margin: 0px;
+  width: 100%;
+  background-color: #eaeaea;
+}
+
+.progress-bar div {  
+  height: 25px;
+  min-width: 0px;
+} 
+
+.progress-bar p {
+  margin: 0px;
+  padding: 0px 0px 0px 5px;
+  position: absolute;
+  top: 0px;
+  line-height: 25px;
+}

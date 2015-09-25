@@ -42,16 +42,62 @@
       payers: [],
       payed: [],
       description: ''
-    }
+    };
     $scope.checkboxes = [];
+    $scope.currId = -1;
 
+    //abbreviation
     var memberList = $scope.memberList;
     var recordList = $scope.recordList;
-
     var record = $scope.record;
     var checkboxes = $scope.checkboxes;
     var nextId = dataService.record.nextId;
-    var currId = -1;
+
+    //local variable
+    var summary = {
+      total: 0,
+      max: 0,
+      member: []
+    };
+
+    //local function
+    function getTotalExpense() {
+      var sum = 0;
+      for(var i=0; i<recordList.length; i++){
+        sum = sum + recordList[i].amount;
+      }
+
+      return sum;
+    }
+
+    function getExpenseOf(id) {
+      var sum = 0;
+
+      for(var i=0; i<recordList.length; i++){
+        if(recordList[i].payers.indexOf(id) !== -1)
+          sum = sum + recordList[i].amount/recordList[i].payers.length;
+      }
+
+      return sum;
+    }
+
+    function getDebtOf(id) {
+      var sum = 0;
+      var payed = 0;
+
+      for(var i=0; i<recordList.length; i++){
+        if(recordList[i].payers.indexOf(id) !== -1)
+          sum = sum + recordList[i].amount/recordList[i].payers.length;
+      }
+
+      for(var i=0; i<recordList.length; i++){
+        var result = $.grep(recordList[i].payed, function(e){ return e.id === id; });
+        if(result.length === 1)
+          payed = payed + result[0].amount;
+      }
+
+      return sum - payed;
+    }
 
     /*record-sidenav*/
 
@@ -121,7 +167,7 @@
     };
 
     $scope.reset = function() {
-      currId = -1;
+      $scope.currId = -1;
       record.id = nextId;
       record.amount = 0;
       record.payers = [];
@@ -134,7 +180,7 @@
     };
 
     $scope.update = function() {
-      if(currId === -1){
+      if($scope.currId === -1){
         recordList.push({
           id: record.id,
           amount: record.amount,
@@ -164,8 +210,8 @@
     };
 
     $scope.delete = function() {
-      for(var i = 0; i < recordList.length; i++) {
-        if(recordList[i].id == currId) {
+      for(var i=0; i<recordList.length; i++) {
+        if(recordList[i].id == $scope.currId) {
           recordList.splice(i, 1);
           break;
         }
@@ -174,10 +220,35 @@
 
     /*summary, record-list*/
 
+    $scope.$watch('recordList', function(newValue, oldValue) {
+      summary.total = getTotalExpense();
+
+      summary.member.length = 0;
+      for(var i=0; i<memberList.length; i++){
+        var expense = getExpenseOf(memberList[i].id);
+        var debt = getDebtOf(memberList[i].id);
+
+        summary.member.push({
+          id: memberList[i].id,
+          expense: expense,
+          debt: debt,
+        });
+
+        if(debt >= 0){
+          if(expense > summary.max)
+            summary.max = expense;
+        }
+        else{
+          if(expense-debt > summary.max)
+            summary.max = expense-debt;
+        }
+      }
+    }, true);
+
     $scope.set = function(id) {
       var result = $.grep(recordList, function(e){ return e.id === id; });
 
-      currId = id;
+      $scope.currId = id;
       record.id = result[0].id;
       record.amount = result[0].amount;
       record.description = result[0].description;
@@ -206,44 +277,6 @@
       }
     };
 
-    $scope.getTotalExpense = function() {
-      var sum = 0;
-      for(var i=0; i<recordList.length; i++){
-        sum = sum + recordList[i].amount;
-      }
-
-      return sum;
-    }
-
-    $scope.getExpenseOf = function(id) {
-      var sum = 0;
-
-      for(var i=0; i<recordList.length; i++){
-        if(recordList[i].payers.indexOf(id) !== -1)
-          sum = sum + recordList[i].amount/recordList[i].payers.length;
-      }
-
-      return sum;
-    }
-
-    $scope.getDebtOf = function(id) {
-      var sum = 0;
-      var payed = 0;
-
-      for(var i=0; i<recordList.length; i++){
-        if(recordList[i].payers.indexOf(id) !== -1)
-          sum = sum + recordList[i].amount/recordList[i].payers.length;
-      }
-
-      for(var i=0; i<recordList.length; i++){
-        var result = $.grep(recordList[i].payed, function(e){ return e.id === id; });
-        if(result.length === 1)
-          payed = payed + result[0].amount;
-      }
-
-      return sum - payed;
-    }
-
     $scope.isPayer = function(index, id) {
       if(recordList[index].payers.indexOf(id) !== -1)
         return true;
@@ -251,6 +284,55 @@
         return false;
     }
 
+    $scope.getTotalExpense = function() {
+      return getTotalExpense();
+    }
+
+    $scope.outerStyle = function(id) {
+      var result = $.grep(summary.member, function(e){ return e.id === id; });
+      var expense = result[0].expense;
+      var debt = result[0].debt;
+
+      if(expense > 0){
+        return {
+          width: (result[0].expense/summary.max)*100 + "%"
+        }
+      }
+      else{
+        return {
+          width: "100%",
+          "background-color": "transparent"
+        }
+      } 
+    }
+
+    $scope.innerStyle = function(id, color) {
+      var result = $.grep(summary.member, function(e){ return e.id === id; });
+      var expense = result[0].expense;
+      var debt = result[0].debt;
+
+      if(expense > 0){
+        return {
+          width: ((result[0].expense-result[0].debt)/result[0].expense)*100 + "%",
+          "background-color": color
+        }
+      }
+      else{
+        return {
+          width: (0 - result[0].debt/summary.max)*100 + "%",
+          "background-color": color
+        }
+      }
+    }
+
+    $scope.getSummaryOf = function(id) {
+      var result = $.grep(summary.member, function(e){ return e.id === id; });
+      var expense = result[0].expense;
+      var debt = result[0].debt;
+
+      return (expense-debt) + "/" + expense;
+    }
+    
   }]);
 
 })();

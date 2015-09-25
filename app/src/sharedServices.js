@@ -17,9 +17,9 @@
     var record = {
       nextId: 3,
       list: [
-        {id: 0, amount: 100, payers: [0, 2], payed: [{id: 1, amount: 50}], description: '宜蘭蔥餅'},
+        {id: 0, amount: 100, payers: [0, 2], payed: [{id: 0, amount: 50}, {id: 1, amount: 50}], description: '宜蘭蔥餅'},
         {id: 1, amount: 200, payers: [0, 2], payed: [{id: 1, amount: 50}], description: '愛玉'},
-        {id: 2, amount: 150, payers: [0, 2], payed: [{id: 1, amount: 50}], description: '羊肉湯'},
+        {id: 2, amount: 150, payers: [0, 2], payed: [{id: 2, amount: 100}], description: '羊肉湯'},
       ]
     }
 

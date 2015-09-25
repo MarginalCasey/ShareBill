@@ -56,6 +56,10 @@ md-divider.thick {
     border-top-width: 3px;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .text-right {
     text-align: right;
 }
@@ -78,6 +82,10 @@ md-divider.thick {
 
 .btn-group > button + button {
     margin-left: -1px;
+}
+
+.btn-group > button:not(:first-child):not(:last-child) {
+    border-radius: 0;
 }
 
 .btn-group > button:last-child:not(:first-child) {
@@ -111,9 +119,20 @@ button.md-icon-button {
 }
 
 button#showSideNav {
-    position: absolute; 
-    right: 0px; 
-    top: 8px;
+    position: fixed; 
+    bottom: 20px;
+    right: 20px; 
+    padding: 0px;
+}
+
+button#showSideNav > md-icon {
+    height: 56px;
+    width: 56px;
+}
+
+button#showSideNav > md-icon > span {
+    line-height: 56px;
+    font-size: 42px;
 }
 
 button#closeSideNav {
