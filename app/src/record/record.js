@@ -244,6 +244,32 @@
         }
       }
     }, true);
+    
+    //TODO: 重構這一部份
+    $scope.$watch('memberList', function(newValue, oldValue) {
+      summary.total = getTotalExpense();
+
+      summary.member.length = 0;
+      for(var i=0; i<memberList.length; i++){
+        var expense = getExpenseOf(memberList[i].id);
+        var debt = getDebtOf(memberList[i].id);
+
+        summary.member.push({
+          id: memberList[i].id,
+          expense: expense,
+          debt: debt,
+        });
+
+        if(debt >= 0){
+          if(expense > summary.max)
+            summary.max = expense;
+        }
+        else{
+          if(expense-debt > summary.max)
+            summary.max = expense-debt;
+        }
+      }
+    }, true);
 
     $scope.set = function(id) {
       var result = $.grep(recordList, function(e){ return e.id === id; });
