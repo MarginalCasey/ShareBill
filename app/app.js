@@ -24,10 +24,15 @@
     
     ui.currentTab = 0;
     ui.member_is_open = false;
-    ui.receipr_is_open = false;
+    ui.record_is_open = false;
 
     ui.switchToTab = function(index) {
+      var prevTab = ui.currentTab;
+
       ui.currentTab = index;
+
+      if(prevTab === 1)
+        ui.returnToSummary();
     };
 
     ui.showSideNav = function() {
@@ -48,6 +53,36 @@
       }
     };
 
+    /*summary*/
+
+    ui.switchFab = false;
+    ui.summary_is_open = true;
+    ui.summaryOf = [];
+    ui.recordListOf = [];
+
+    ui.showRecordOf = function(index) {
+      ui.switchFab = true;
+      ui.summary_is_open = false;
+      ui.recordListOf[index] = true; 
+      
+      for(var i = 0; i < ui.summaryOf.length; i++){
+        if(i !== index)
+          ui.summaryOf[i] = false;
+      }
+    }
+
+    ui.returnToSummary = function() {
+      ui.switchFab = false;
+      ui.summary_is_open = true;
+
+      for(var i = 0; i < ui.summaryOf.length; i++){
+        ui.summaryOf[i] = true;
+      }
+
+      for(var i = 0; i < ui.recordListOf.length; i++){
+        ui.recordListOf[i] = false;
+      }
+    }
   }
 
 })();

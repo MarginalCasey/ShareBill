@@ -16,7 +16,7 @@
   function PickerController() {
     var picker = this;
     
-    picker.colors = ['#DDB959', '#D54344', '#D774A2', '#EE8860', '#9783B8', '#0A0917'];
+    picker.colors = ['#FF0000', '##FF6600', '##FFCC00', '#008000', '#00BFFF', '#336699', '#551A8B', '#CD00CD'];
   }
 
 })();

@@ -1,12 +1,14 @@
 <md-content flex layout-padding id="summary">
-  <div ng-hide="test" class="test">
+  <div ng-hide="ui.summary_is_open === false">
     <h3 class="text-center">總共</h3>
     <h1 class="text-center">${{getTotalExpense() | number:2}}</h1>
   </div>
+
   <md-list>
-    <md-list-item ng-repeat="person in memberList" layout="column">  
+    <md-list-item ng-repeat="person in memberList" layout="column" ng-hide="ui.summaryOf[$index] === false" ng-init="ui.summaryOf[$index] = true">  
   
-      <md-button class="md-no-style" ng-click="" flex="100">
+
+      <md-button class="md-no-style" ng-click="ui.showRecordOf($index)" flex>
         <p>{{person.name}}</p>
         
         <div class="progress-bar" ng-style="outerStyle(person.id)">
@@ -16,14 +18,15 @@
       </md-button>
 
 
-      <md-list flex="100" ng-hide="true">
+      <md-list flex ng-show="ui.recordListOf[$index]" ng-init="ui.recordListOf[$index] = false" class="full-width">
         <md-list-item ng-repeat="Record in recordList" ng-show="isPayer($index, person.id)" layout="column"> 
 
           <md-button class="md-no-style" ng-click="set(Record.id); ui.showSideNav();" flex="100">
             <div class="md-list-item-inner ng-scope">
-              <p>{{Record.amount/Record.payers.length | number:2}}</p>
               <p>{{Record.description}}</p>
+              <p class="text-right">${{Record.amount/Record.payers.length | number:2}}</p>
             </div>
+            <md-divider ng-show="!$last"></md-divider>
           </md-button>
 
         </md-list-item>

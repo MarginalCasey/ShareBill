@@ -13,8 +13,11 @@
       </md-button>
     </div>
 
-    <md-button ng-click="ui.showSideNav()" class="md-fab md-primary" id="showSideNav">
+    <md-button ng-click="ui.showSideNav()" ng-hide="ui.switchFab" class="md-fab md-primary" id="showSideNav">
       <md-icon md-font-set="material-icons">add</md-icon>
+    </md-button>
+    <md-button ng-click="ui.returnToSummary()" ng-show="ui.switchFab" class="md-fab md-primary" id="showSideNav">
+      <md-icon md-font-set="material-icons">chevron_left</md-icon>
     </md-button>
 
   </md-toolbar>
