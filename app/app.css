@@ -64,6 +64,14 @@ md-divider.thick {
     text-align: right;
 }
 
+.pull-right {
+  float: right;
+}
+
+.red {
+  color: red;
+}
+
 /* 導覽列 */
 
 .btn-group > button {
@@ -160,4 +168,8 @@ md-icon#closeSideNav {
 
 md-tabs.noTabPanel md-tabs-wrapper {
     display: none !important;
+}
+
+md-tab-content {
+  min-height: calc(100vh - 64px);
 }

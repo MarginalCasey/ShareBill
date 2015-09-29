@@ -1,7 +1,7 @@
 <md-content flex layout-padding id="summary">
-  <div ng-hide="ui.summary_is_open === false">
+  <div ng-hide="ui.summary_is_open === false" class="hide-total">
     <h3 class="text-center">總共</h3>
-    <h1 class="text-center">${{getTotalExpense() | number:2}}</h1>
+    <h1 class="text-center" id="total">${{getTotalExpense() | number:2}}</h1>
   </div>
 
   <md-list>
@@ -9,7 +9,11 @@
   
 
       <md-button class="md-no-style" ng-click="ui.showRecordOf($index)" flex>
-        <p>{{person.name}}</p>
+        <p>
+          <span ng-style="{'color': person.color}">{{person.name}}</span>
+          <span class="pull-right red" ng-show="getDebtOf(person.id) > 0">少付 ${{getDebtOf(person.id) | number:2}}</span>
+          <span class="pull-right" ng-show="getDebtOf(person.id) < 0">多付 ${{-getDebtOf(person.id) | number:2}}</span>
+        </p>
         
         <div class="progress-bar" ng-style="outerStyle(person.id)">
           <div ng-style="innerStyle(person.id, person.color)"></div>
@@ -18,7 +22,8 @@
       </md-button>
 
 
-      <md-list flex ng-show="ui.recordListOf[$index]" ng-init="ui.recordListOf[$index] = false" class="full-width">
+      <md-list flex ng-show="ui.recordListOf[$index]" ng-init="ui.recordListOf[$index] = false" class="full-width show-list">
+        <md-subheader class="md-no-sticky">消費記錄</md-subheader>
         <md-list-item ng-repeat="Record in recordList" ng-show="isPayer($index, person.id)" layout="column"> 
 
           <md-button class="md-no-style" ng-click="set(Record.id); ui.showSideNav();" flex="100">

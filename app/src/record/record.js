@@ -314,6 +314,10 @@
       return getTotalExpense();
     }
 
+    $scope.getDebtOf = function(id) {
+      return getDebtOf(id);
+    }
+
     $scope.outerStyle = function(id) {
       var result = $.grep(summary.member, function(e){ return e.id === id; });
       var expense = result[0].expense;
@@ -356,7 +360,7 @@
       var expense = result[0].expense;
       var debt = result[0].debt;
 
-      return (expense-debt) + "/" + expense;
+      return "$" + new Number(expense-debt).toFixed(2) + " / " + "$" + new Number(expense).toFixed(2);
     }
     
   }]);

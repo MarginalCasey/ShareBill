@@ -31,6 +31,15 @@
         <md-button ng-click="showKeypad($event, -1)">${{record.amount | number:2}}</md-button>
       </p>
 
+      
+      <md-subheader class="md-no-sticky">附加資訊</md-subheader>
+      <md-divider class="thick"></md-divider>
+      <md-input-container layout="row" md-no-float>
+        <span flex="33">項目</span>
+        <input flex="66" ng-model="record.description" type="text" aria-label="description">
+      </md-input-container>
+
+
       <md-subheader>分攤對象</md-subheader>
       <md-divider class="thick"></md-divider>
       <md-list>
@@ -49,6 +58,7 @@
         <span>${{getAverage() | number:2}}</span>
       </md-input-container>
       
+
       <md-subheader>已付款</md-subheader>
       <md-divider class="thick"></md-divider>
       <md-list>
@@ -65,13 +75,6 @@
       <md-input-container md-no-float layout="row" layout-align="space-between center">
         <span>餘額</span> 
         <span>${{getBalance() | number:2}}</span>
-      </md-input-container>
-
-      <md-subheader class="md-no-sticky">附加資訊</md-subheader>
-      <md-divider class="thick"></md-divider>
-      <md-input-container layout="row" md-no-float>
-        <span flex="33">敘述</span>
-        <input flex="66" ng-model="record.description" type="text" aria-label="description">
       </md-input-container>
     </form>
   </md-content>
