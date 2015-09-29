@@ -136,13 +136,16 @@
         return result[0].amount;
     };
 
-    $scope.showKeypad = function(ev, id) {
+    $scope.showKeypad = function(ev, id, num) {
       $mdDialog.show({
         templateUrl: 'src/keypad/view/keypad.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose: false,
-        focusOnOpen: false
+        focusOnOpen: false,
+        locals: { input: num },
+        controller: 'KeypadController',
+        controllerAs: 'keypad'
       })
       .then(function (output) {
         if(id === -1){

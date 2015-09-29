@@ -28,7 +28,7 @@
   <md-content layout-padding>
     <form id="newRecord">
       <p id="amount">
-        <md-button ng-click="showKeypad($event, -1)">${{record.amount | number:2}}</md-button>
+        <md-button ng-click="showKeypad($event, -1, record.amount)">${{record.amount | number:2}}</md-button>
       </p>
 
       
@@ -65,7 +65,7 @@
         <md-divider></md-divider>
         <md-list-item ng-repeat="person in member.list" layout="row" layout-align="space-between center" class="payed"> 
 
-          <md-button ng-click="showKeypad($event, person.id)">
+          <md-button ng-click="showKeypad($event, person.id, getAmount(person.id))">
             <div class="md-list-item-inner ng-scope">
               <div ng-style="{'background-color': person.color}" class="color-square"></div>
               <p>{{person.name}}</p>
