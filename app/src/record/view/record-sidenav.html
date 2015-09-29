@@ -64,11 +64,15 @@
       <md-list>
         <md-divider></md-divider>
         <md-list-item ng-repeat="person in member.list" layout="row" layout-align="space-between center" class="payed"> 
-          <div class="md-list-item-inner ng-scope">
-            <div ng-style="{'background-color': person.color}" class="color-square"></div>
-            <p>{{person.name}}</p>
-          </div>
-          <md-button ng-click="showKeypad($event, person.id)">${{getAmount(person.id) | number:2}}</md-button>
+
+          <md-button ng-click="showKeypad($event, person.id)">
+            <div class="md-list-item-inner ng-scope">
+              <div ng-style="{'background-color': person.color}" class="color-square"></div>
+              <p>{{person.name}}</p>
+              <p class="text-right">${{getAmount(person.id) | number:2}}</p>
+            </div>
+          </md-button>
+
           <md-divider></md-divider>
         </md-list-item>
       </md-list>
