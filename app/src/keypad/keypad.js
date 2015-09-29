@@ -3,10 +3,9 @@
 
   var keypadModule = angular.module('keypad', []);
 
-  keypadModule.controller('KeypadController', ['$mdDialog', function($mdDialog){
+  keypadModule.controller('KeypadController', ['$mdDialog','input', function($mdDialog, input){
     var keypad = this;
-    
-    keypad.result = 0;
+  
     keypad.decimalPlaces = 2;
 
 
@@ -16,6 +15,20 @@
     var multiplier = Math.pow(10, keypad.decimalPlaces);
     //小數點位數
     var pointer = 1;
+
+
+    keypad.result = input;
+
+
+    if(Math.floor(input) !== input){
+      mode = 'dec';
+      integer = Math.floor(input);
+      decimal = Number(frac(input));
+      pointer = pointer + decimal.toString().length - 2;
+    }
+    else{
+      integer = input;
+    }
 
 
     keypad.click = function(button) {
@@ -58,6 +71,13 @@
     keypad.cancel = function() {
       $mdDialog.cancel();
     };
+
+
+    //local function
+    function frac(x) {
+      var str = '' + x, idx = str.indexOf('.');
+      return ~idx? +('0' + str.substr(idx)) : 0;
+    }
   }]);
 
 })();

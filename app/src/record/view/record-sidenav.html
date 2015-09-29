@@ -28,7 +28,7 @@
   <md-content layout-padding>
     <form id="newRecord">
       <p id="amount">
-        <md-button ng-click="showKeypad($event, -1)">${{record.amount | number:2}}</md-button>
+        <md-button ng-click="showKeypad($event, -1, record.amount)">${{record.amount | number:2}}</md-button>
       </p>
 
       
@@ -64,17 +64,21 @@
       <md-list>
         <md-divider></md-divider>
         <md-list-item ng-repeat="person in member.list" layout="row" layout-align="space-between center" class="payed"> 
-          <div class="md-list-item-inner ng-scope">
-            <div ng-style="{'background-color': person.color}" class="color-square"></div>
-            <p>{{person.name}}</p>
-          </div>
-          <md-button ng-click="showKeypad($event, person.id)">${{getAmount(person.id) | number:2}}</md-button>
+
+          <md-button ng-click="showKeypad($event, person.id, getAmount(person.id))">
+            <div class="md-list-item-inner ng-scope">
+              <div ng-style="{'background-color': person.color}" class="color-square"></div>
+              <p>{{person.name}}</p>
+              <p class="text-right">${{getAmount(person.id) | number:2}}</p>
+            </div>
+          </md-button>
+
           <md-divider></md-divider>
         </md-list-item>
       </md-list>
       <md-input-container md-no-float layout="row" layout-align="space-between center">
         <span>餘額</span> 
-        <span>${{getBalance() | number:2}}</span>
+        <span ng-class="getBalance() !== 0 ? 'red' : 'normal' ">${{getBalance() | number:2}}</span>
       </md-input-container>
     </form>
   </md-content>

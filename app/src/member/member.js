@@ -31,7 +31,7 @@
     
     member.currIndex = '';
     member.currName = '';
-    member.currColor = 'transparent';
+    member.currColor = dataService.color[0];
 
     /*排序的參數設定*/
     member.sortableOptions = {
@@ -76,7 +76,7 @@
     member.reset = function() {
       member.currIndex = '';
       member.currName = '';
-      member.currColor = 'transparent';
+      member.currColor = dataService.color[0];
     };
   }]);
 

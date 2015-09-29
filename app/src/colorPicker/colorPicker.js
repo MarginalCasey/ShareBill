@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  var app = angular.module('colorPicker', []);
+  var app = angular.module('colorPicker', ['sharedServices']);
 
   app.directive('colorPicker', function(){
     return {
@@ -13,10 +13,10 @@
     }
   });
 
-  function PickerController() {
+  function PickerController(dataService) {
     var picker = this;
     
-    picker.colors = ['#FF0000', '##FF6600', '##FFCC00', '#008000', '#00BFFF', '#336699', '#551A8B', '#CD00CD'];
+    picker.colors = dataService.color;
   }
 
 })();

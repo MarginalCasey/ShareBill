@@ -15,9 +15,12 @@
       list: []
     }
 
+    var color = ['#FF0000', '##FF6600', '##FFCC00', '#008000', '#00BFFF', '#336699', '#551A8B', '#CD00CD'];
+
     return {
       member: member,
-      record: record
+      record: record,
+      color: color
     }
   });
 
