@@ -78,7 +78,7 @@
       </md-list>
       <md-input-container md-no-float layout="row" layout-align="space-between center">
         <span>餘額</span> 
-        <span>${{getBalance() | number:2}}</span>
+        <span ng-class="getBalance() !== 0 ? 'red' : 'normal' ">${{getBalance() | number:2}}</span>
       </md-input-container>
     </form>
   </md-content>
