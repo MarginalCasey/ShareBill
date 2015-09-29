@@ -1,5 +1,9 @@
 /* record-sidenav */
 
+form#newRecord {
+  padding-bottom: 20px;
+}
+
 form#newRecord > md-input-container {
 	padding-left: 16px;
 	padding-right: 16px;
@@ -13,6 +17,10 @@ form#newRecord md-input-container > span {
 	line-height: 30px;
 }
 
+form#newRecord .md-subheader {
+  margin-top: 20px;
+}
+
 form#newRecord p#amount {
 	padding: 0px;
 	margin: 0px;
@@ -20,15 +28,15 @@ form#newRecord p#amount {
 }
 
 form#newRecord p#amount span {
-	font-size: 2em;
+	font-size: 2.5em;
 }
 
 form#newRecord md-list-item.payed {
 	position: relative;
-    padding: 0px 2px 0px 16px;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+  padding: 0px 2px 0px 16px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 form#newRecord md-list-item.payed button {
@@ -38,12 +46,18 @@ form#newRecord md-list-item.payed button {
 
 /* summary */
 
-#summary > md-list button {
+#summary #total {
+  margin-top: -10px;
+}
+
+#summary > md-list > md-list-item > button {
+  padding-top: 10px;
   padding-bottom: 10px;
 }
 
-#summary > md-list button > p {
+#summary > md-list > md-list-item > button > p {
   margin: 0px;
+  line-height: 25px;
 }
 
 .progress-bar {
@@ -63,5 +77,32 @@ form#newRecord md-list-item.payed button {
   padding: 0px 0px 0px 5px;
   position: absolute;
   top: 0px;
+  font-size: 13px;
   line-height: 25px;
+}
+
+/* .ng-hide-add {
+  animation: fadeOut 2.5s;
+} */
+
+/* animation */
+
+.hide-total {
+  -webkit-transition:all linear 0.25s;
+  transition:all linear 0.25s;
+  overflow: hidden;
+  max-height: 120px;
+}
+
+.hide-total.ng-hide {
+  max-height: 0px;
+}
+
+.show-list.ng-hide-add {
+  animation: fadeOut 0.25s;
+}
+
+.show-list.ng-hide-remove {
+  opacity: 0;
+  animation: fadeIn 0.25s linear 0.25s;
 }
