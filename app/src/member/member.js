@@ -24,6 +24,7 @@
   });
 
   app.controller('memberController', ['dataService', function(dataService){
+    var $localStorage = dataService.$localStorage;
     var member = this;
 
     member.nextId = dataService.member.nextId;
@@ -52,6 +53,7 @@
         });
 
         member.nextId++;
+        dataService.member.nextId++;
       }
       //修改member
       else {
@@ -60,11 +62,17 @@
 
         member.currIndex = '';
       }
+
+      //更新數據
+      $localStorage.member = angular.toJson(dataService.member);
     };
 
     member.delete = function() {
       member.list.splice(member.currIndex, 1);
       member.currIndex = '';
+
+      //更新數據
+      $localStorage.member = angular.toJson(dataService.member);
     };
 
     member.set = function(index) {

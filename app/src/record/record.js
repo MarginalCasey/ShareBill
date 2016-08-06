@@ -34,6 +34,8 @@
   });
 
   recordModule.controller('recordController', ['$scope','$mdDialog', 'dataService', function($scope, $mdDialog, dataService){
+    var $localStorage = dataService.$localStorage;
+
     $scope.memberList = dataService.member.list;
     $scope.recordList = dataService.record.list;
     $scope.record = {
@@ -193,6 +195,7 @@
         });
 
         nextId++;
+        dataService.record.nextId++;
       }
       else {
         var result = $.grep(recordList, function(e){ return e.id === record.id; });
@@ -209,7 +212,10 @@
         for(var i=0; i<record.payed.length; i++){
           result[0].payed[i] = record.payed[i];
         }
-      } 
+      }
+
+      //更新數據
+      $localStorage.record = angular.toJson(dataService.record);
     };
 
     $scope.delete = function() {
@@ -219,6 +225,9 @@
           break;
         }
       }
+
+      //更新數據
+      $localStorage.record = angular.toJson(dataService.record);
     };
 
     /*summary, record-list*/
